@@ -1,0 +1,55 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+    var count = 0;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+    <h2>Available Boxes:</h2>
+    @foreach(var box in Model.Boxes)
+    {
+
+        <div class="box">
+            <div class="box-index">
+                @box.BoxIndex
+            </div>
+            <div class="ticket-number">
+                @box.TicketNumber
+            </div>
+        </div>        
+        count++;
+        if(count%10 == 0)
+        {
+            <br />   
+        }
+    }
+    <h2> Convicts tries:</h2>
+
+    
+    @foreach (var convictHistory in Model.ConvictHistories)
+    {
+
+        <span>Convict index @convictHistory.ConvictIndex.ToString() Number of steps in first try: @(convictHistory.FirstTry.Boxes.Count().ToString()) </span>
+        <br />
+        foreach (var box in @convictHistory.FirstTry.Boxes)
+        {
+            <div class="box">
+                <div class="box-index">
+                    @box.BoxIndex
+                </div>
+                <div class="ticket-number">
+                    @box.TicketNumber
+                </div>
+            </div>
+        }
+        <br />
+        <br />
+        <br />
+        <br />
+    }
+
+</div>
